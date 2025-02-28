@@ -19,6 +19,53 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 5. Make sure your code follows our coding standards.
 6. Issue that pull request!
 
+## Development Environment Setup
+
+1. Ensure you have Python 3.9+ installed
+2. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd zos-ml-demo
+   ```
+3. Create and activate a virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Unix/macOS
+   venv\Scripts\activate     # On Windows
+   ```
+4. Install the package in development mode:
+   ```bash
+   pip install -e .
+   ```
+
+## Testing
+
+We use pytest for testing. Run the tests with:
+```bash
+pytest tests/
+```
+
+For coverage report:
+```bash
+pytest --cov=./ --cov-report=xml
+```
+
+## Code Quality
+
+### Automated Checks
+All code must pass:
+- pytest test suite
+- flake8 linting
+- Bandit security scanning
+- CodeQL analysis
+
+### Python Code Style
+- Follow PEP 8
+- Use type hints
+- Document all functions and classes
+- Keep functions focused and small
+- Add docstrings to all public functions and classes
+
 ## z/OS-Specific Guidelines
 
 ### 1. Subsystem Integration
@@ -39,62 +86,50 @@ When contributing code that interacts with z/OS subsystems:
 - Document required security configurations
 - Include RACF resource definitions
 - Consider audit requirements
+- Run Bandit security scans locally before submitting
 
-## Code Style Guidelines
+## Package Structure
 
-### Python Code Style
-- Follow PEP 8
-- Use type hints
-- Document all functions and classes
-- Keep functions focused and small
+When adding new code, follow our package structure:
+```
+zos_ml_demo/
+├── __init__.py
+├── ml_model.py
+└── utils/
+    ├── __init__.py
+    ├── zos_monitoring.py
+    ├── zos_performance_analyzer.py
+    ├── zos_security_manager.py
+    └── ...
+```
 
-### JCL Standards
-- Use standard JCL conventions
-- Document all JCL parameters
-- Include sample PROC modifications
-- Follow naming conventions
-
-## Testing Guidelines
-
-### Unit Tests
-- Write unit tests for all new code
-- Include z/OS-specific test cases
-- Mock subsystem interfaces appropriately
-- Test error conditions
-
-### Integration Tests
-- Test subsystem integration
-- Verify RACF interactions
-- Test performance metrics
-- Validate monitoring capabilities
-
-## Documentation Requirements
+## Documentation
 
 ### Code Documentation
-- Clear function descriptions
-- Parameter documentation
-- Return value documentation
-- Usage examples
+- Add docstrings to all public functions and classes
+- Include type hints
+- Document exceptions and return values
+- Add examples for complex functionality
 
-### System Documentation
-- Installation requirements
-- Configuration details
-- Performance implications
-- Security requirements
-
-## Issue Reporting Process
-
-1. Use the issue tracker
-2. Include reproduction steps
-3. List system configuration
-4. Attach relevant logs
+### Project Documentation
+When making significant changes:
+1. Update README.md
+2. Update relevant documentation in /docs
+3. Add migration guides if needed
+4. Update CHANGELOG.md
 
 ## Pull Request Process
 
-1. Update documentation
-2. Update CHANGELOG.md
-3. Update test cases
-4. Get review from maintainers
+1. Update the README.md with details of changes if needed
+2. Update the CHANGELOG.md with a note describing your changes
+3. The PR will be merged once you have the sign-off of at least one maintainer
+
+## Getting Help
+
+If you need help, you can:
+1. Open an issue with a detailed description
+2. Tag maintainers in your PR for review
+3. Ask questions in the discussions section
 
 ## Community Guidelines
 

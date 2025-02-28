@@ -5,14 +5,14 @@ A comprehensive machine learning application designed for z/OS environments, foc
 ## 🌟 Features
 
 ### 1. Transaction Analysis
-- Real-time transaction pattern detection
+- Real-time transaction pattern detection using Isolation Forest
 - Risk scoring and anomaly detection
 - Integration with z/OS subsystems (DB2, IMS, CICS, MQ)
 - VSAM quick lookup storage
 
 ### 2. Performance Management
 - Real-time system metrics monitoring
-- RMF/SMF metric collection
+- CPU, memory, and I/O metrics collection
 - Performance trend analysis
 - Resource utilization tracking
 - Automated recommendations
@@ -23,6 +23,7 @@ A comprehensive machine learning application designed for z/OS environments, foc
 - Suspicious pattern detection
 - Security event logging
 - Detailed security reporting
+- Automated security scanning with Bandit
 
 ### 4. System Integration
 - DB2 transaction storage
@@ -35,9 +36,9 @@ A comprehensive machine learning application designed for z/OS environments, foc
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.8+
+- Python 3.9+
 - z/OS environment
-- Required Python packages (see requirements.txt)
+- Required Python packages (see pyproject.toml)
 
 ### Installation
 1. Clone the repository:
@@ -49,18 +50,85 @@ cd zos-ml-demo
 2. Create and activate virtual environment:
 ```bash
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # On Unix/macOS
+venv\Scripts\activate     # On Windows
 ```
 
-3. Install dependencies:
+3. Install the package:
 ```bash
-pip install -r requirements.txt
+pip install -e .
 ```
 
-4. Start the application:
+## 📦 Dependencies
+
+Key dependencies (see pyproject.toml for complete list):
+- Flask 3.0.0
+- Flask-CORS 4.0.0
+- scikit-learn
+- pandas
+- numpy
+- python-dateutil
+- requests
+- pyyaml
+- typing-extensions
+- psutil
+
+## 🧪 Testing
+
+Run tests with pytest:
 ```bash
-python app.py
+pytest tests/
 ```
+
+For coverage report:
+```bash
+pytest --cov=./ --cov-report=xml
+```
+
+## 🔒 Security
+
+Security scanning is performed automatically on all commits using:
+- Bandit for Python security scanning
+- CodeQL for advanced security analysis
+- GitHub Security features
+
+## 🛠 Development
+
+### Code Organization
+- `zos_ml_demo/`: Main package directory
+  - `utils/`: Utility modules
+    - `zos_monitoring.py`: System monitoring utilities
+    - `zos_performance_analyzer.py`: Performance analysis tools
+    - `zos_security_manager.py`: Security management
+    - Other utility modules...
+  - `ml_model.py`: Machine learning models and algorithms
+
+### CI/CD Pipeline
+- Automated testing on Python 3.9-3.13
+- Code coverage reporting
+- Security scanning
+- Linting with flake8
+
+## 📊 Monitoring Features
+
+The system monitoring module (`SystemMonitor`) provides:
+- CPU usage tracking
+- Memory utilization monitoring
+- I/O metrics collection
+- Response time analysis
+- Transaction counting
+- Error rate monitoring
+- Health check reporting
+
+## 🔍 Performance Analysis
+
+The performance analyzer (`PerformanceAnalyzer`) includes:
+- CPU analysis
+- Memory analysis
+- I/O analysis
+- Response time analysis
+- Automated recommendations
+- Threshold-based alerts
 
 ## 📡 API Endpoints
 
@@ -99,93 +167,17 @@ GET /api/security
 X-User-ID: MLAPPADM
 ```
 
-## 📊 Monitoring and Metrics
+## 📝 Contributing
 
-### System Metrics
-- CPU utilization
-- Memory usage
-- I/O performance
-- Response times
-- Transaction rates
-
-### Performance Analysis
-- Real-time performance monitoring
-- Trend analysis
-- Automated recommendations
-- Resource optimization suggestions
-
-### Security Monitoring
-- Access pattern analysis
-- Security event tracking
-- Suspicious activity detection
-- RACF integration
-
-## 🔒 Security
-
-### Authentication
-- RACF-based authentication
-- Role-based access control
-- Comprehensive audit trails
-
-### Data Protection
-- SSL/TLS encryption
-- Secure data storage
-- Access logging
-
-## 🛠 Configuration
-
-### Environment Variables
-- `ZOS_CONFIG_PATH`: Path to z/OS configuration file
-- `LOG_LEVEL`: Logging level (DEBUG, INFO, WARNING, ERROR)
-- `SSL_CERT_PATH`: Path to SSL certificate
-- `SSL_KEY_PATH`: Path to SSL private key
-
-### z/OS Configuration
-- DB2 connection settings
-- IMS configuration
-- CICS settings
-- MQ configuration
-- RACF settings
-
-## 📝 Logging
-
-### System Logs
-- Application logs
-- Performance metrics
-- Security events
-- Transaction records
-
-### Monitoring Data
-- RMF records
-- SMF data
-- WLM metrics
-- Sysplex status
-
-## 🔧 Maintenance
-
-### Backup
-- Regular transaction backups
-- Configuration backups
-- Security audit trails
-
-### Recovery
-- Transaction recovery procedures
-- System state recovery
-- Error handling protocols
-
-## 📈 Performance Optimization
-
-### Recommendations
-- Resource allocation optimization
-- Workload balancing
-- Response time improvement
-- I/O optimization
-
-## 🤝 Contributing
-Please read CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔄 Version History
+
+See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
 
 ## 🙏 Acknowledgments
 - z/OS System Programming team
