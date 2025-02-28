@@ -1,0 +1,71 @@
+site_name: z/OS ML Transaction Analyzer
+site_description: Documentation for z/OS Machine Learning Transaction Analyzer
+site_author: VadneyK
+repo_url: https://github.com/VadneyK/zos-ml-demo
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: installation.md
+    - Configuration: configuration.md
+    - Quick Start: quickstart.md
+  - Features:
+    - Transaction Analysis: features/transaction-analysis.md
+    - Performance Monitoring: features/performance-monitoring.md
+    - Security: features/security.md
+  - z/OS Integration:
+    - DB2: zos/db2.md
+    - CICS: zos/cics.md
+    - IMS: zos/ims.md
+    - MQ: zos/mq.md
+  - API Reference:
+    - Endpoints: api/endpoints.md
+    - Models: api/models.md
+    - Authentication: api/auth.md
+  - Contributing:
+    - Guidelines: contributing/guidelines.md
+    - Development Setup: contributing/development.md
+    - Testing: contributing/testing.md
+  - Troubleshooting:
+    - Common Issues: troubleshooting/common-issues.md
+    - FAQs: troubleshooting/faq.md
+    - Support: troubleshooting/support.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
