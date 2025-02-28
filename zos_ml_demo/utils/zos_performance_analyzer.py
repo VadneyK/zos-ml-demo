@@ -5,7 +5,7 @@ import logging
 from datetime import datetime, timedelta
 import numpy as np
 
-class ZOSPerformanceAnalyzer:
+class PerformanceAnalyzer:
     def __init__(self):
         self.metrics = {}
         self.thresholds = {
