@@ -14,17 +14,20 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Security vulnerabilities scan
-      uses: snyk/actions/python@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        command: monitor
+        python-version: '3.13'
 
     - name: Run Bandit
       run: |
         pip install bandit
         bandit -r . -f json -o bandit-results.json || true
+
+    - name: Run safety check
+      run: |
+        pip install safety
+        safety check
 
     - name: Upload Bandit scan results
       uses: github/codeql-action/upload-sarif@v2
