@@ -1,3 +1,6 @@
+# Python version requirement
+# Requires Python >= 3.9
+
 # Core dependencies
 flask>=3.0.0
 scikit-learn>=1.4.0
@@ -17,3 +20,9 @@ black>=24.0.0
 flake8>=7.0.0
 mypy>=1.8.0
 bandit>=1.7.0
+
+# Additional dependencies
+python-dateutil>=2.8.2
+requests>=2.31.0
+pyyaml>=6.0.1
+typing-extensions>=4.9.0
