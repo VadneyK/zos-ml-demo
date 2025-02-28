@@ -106,6 +106,33 @@ class SystemMonitor:
         # Write to z/OS dataset
         self._write_health_dataset(health_data)
 
+    def get_system_metrics(self):
+        """Get all system metrics"""
+        try:
+            cpu = self.get_cpu_metrics()
+            memory = self.get_memory_metrics()
+            io = self.get_io_metrics()
+            response_times = self.get_response_times()
+
+            return {
+                'cpu': cpu[-1] if cpu else 0,
+                'memory': memory[-1] if memory else 0,
+                'io_wait': io[-1] if io else 0,
+                'response_time': response_times[-1] if response_times else 0,
+                'transactions': self.metrics['transactions'],
+                'errors': self.metrics['errors']
+            }
+        except Exception as e:
+            self.logger.error(f"Error getting system metrics: {e}")
+            return {
+                'cpu': 0,
+                'memory': 0,
+                'io_wait': 0,
+                'response_time': 0,
+                'transactions': 0,
+                'errors': 0
+            }
+
     def _write_smf_health_record(self, health_data):
         """Write health data to SMF"""
         try:
