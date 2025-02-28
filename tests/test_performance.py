@@ -1,6 +1,6 @@
 import pytest
-from utils.zos_performance_analyzer import PerformanceAnalyzer
-from utils.zos_monitoring import SystemMonitor
+from zos_ml_demo.utils.zos_performance_analyzer import PerformanceAnalyzer
+from zos_ml_demo.utils.zos_monitoring import SystemMonitor
 
 @pytest.fixture
 def performance_analyzer():

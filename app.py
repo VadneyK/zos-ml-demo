@@ -1,21 +1,18 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from ml_model import TransactionAnalyzer
-import numpy as np
-import time
-from config.zos_config import get_zos_config
-from utils.zos_integration import ZOSIntegration
-from utils.zos_monitoring import ZOSMonitor
-from utils.zos_resource_manager import ZOSResourceManager
-from utils.zos_extended_monitoring import ZOSExtendedMonitor
-from utils.zos_subsystem_integration import (
+from zos_ml_demo.utils.zos_performance_analyzer import PerformanceAnalyzer
+from zos_ml_demo.utils.zos_monitoring import SystemMonitor
+from zos_ml_demo.utils.zos_integration import ZOSIntegration
+from zos_ml_demo.utils.zos_resource_manager import ZOSResourceManager
+from zos_ml_demo.utils.zos_extended_monitoring import ZOSExtendedMonitor
+from zos_ml_demo.utils.zos_subsystem_integration import (
     ZOSDB2Integration,
     ZOSIMSIntegration,
     ZOSCICSIntegration,
     ZOSMQIntegration,
     ZOSVSAMIntegration
 )
-from utils.zos_advanced_subsystems import (
+from zos_ml_demo.utils.zos_advanced_subsystems import (
     ZOSSystemAutomation,
     ZOSParallelSysplex,
     ZOSWorkloadScheduler,
@@ -23,12 +20,15 @@ from utils.zos_advanced_subsystems import (
     ZOSSecurityServer,
     ZOSNetworkServices
 )
-from utils.zos_performance_analyzer import ZOSPerformanceAnalyzer
-from utils.zos_security_manager import ZOSSecurityManager
+from zos_ml_demo.utils.zos_security_manager import ZOSSecurityManager
+from zos_ml_demo.ml_model import TransactionAnalyzer
 import logging
 from datetime import datetime
 import uuid
 import random
+import numpy as np
+import time
+from config.zos_config import get_zos_config
 
 app = Flask(__name__)
 CORS(app)
@@ -36,9 +36,9 @@ CORS(app)
 # Initialize z/OS components
 zos_config = get_zos_config()
 zos = ZOSIntegration(zos_config)
-monitor = ZOSMonitor(zos_config)
+monitor = SystemMonitor(zos_config)
 ext_monitor = ZOSExtendedMonitor(zos_config)
-perf_analyzer = ZOSPerformanceAnalyzer()
+perf_analyzer = PerformanceAnalyzer()
 security_manager = ZOSSecurityManager(zos_config)
 resource_manager = ZOSResourceManager(zos_config)
 
