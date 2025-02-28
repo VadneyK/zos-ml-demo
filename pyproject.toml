@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "zos-ml-demo"
 version = "1.0.0"
-description = "z/OS Machine Learning Transaction Analyzer"
+description = "Z/OS Machine Learning Transaction Analyzer"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
@@ -73,3 +73,6 @@ disallow_untyped_defs = true
 [tool.bandit]
 exclude_dirs = ["tests"]
 targets = ["zos_ml_demo"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["zos_ml_demo"]
